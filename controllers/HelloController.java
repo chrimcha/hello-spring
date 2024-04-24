@@ -4,40 +4,40 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@ResponseBody
+@RequestMapping("hello")
 public class HelloController {
 
     // Handles request at /hello
     // @ResponseBody returns plain text response, will use templates instead later on
     // @GetMapping specifies that this method handles GET requests
 //    @GetMapping("hello")
-//    @ResponseBody
 //    public String hello(){
 //        return "Hello, Spring!";
 //    }
 
+    // lives at /hello/goodbye
     @GetMapping("goodbye")
-    @ResponseBody
     public String goodbye(){
         return "Goodbye, Spring!";
     }
 
+    // lives at /hello/hello
     // Handles requests of the form /hello?name=LaunchCode
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "hello") //handles GET and Post, lives at route "hello"
-    @ResponseBody
+    @RequestMapping("hello") //handles GET and Post, lives at route "hello"
     public String helloWithQueryParam(@RequestParam String name) {
         return "Hello, " + name + "!";
     }
 
     // Handles request of the form /hello/LaunchCode
-    @GetMapping("hello/{name}")
-    @ResponseBody
+    @GetMapping("{name}")
     public String helloWithPathParam(@PathVariable String name) {
         return "Hello, " + name + "!";
     }
 
+    // lives at hello/form
     // Method to display form
     @GetMapping("form")
-    @ResponseBody
     public String helloForm() {
         return "<html>" +
                 "<body>" +
