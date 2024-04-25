@@ -33,6 +33,7 @@ public class HelloController {
 //        return "Hello, " + name + "!";
 //    }
 
+
     //handles requests for http://localhost:8080/hello/form
     @GetMapping("form")
     public String helloForm() {
@@ -54,24 +55,24 @@ public class HelloController {
     }
 
     // Include a new public static method, createMessage, in the HelloController that takes a name as well as a language string. Based on the language string, you’ll display the proper greeting.
-    @GetMapping("")
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
     public static String createMessage(@RequestParam String name, @RequestParam String languages) {
         switch (languages) {
             case "thai" -> {
-                return "S̄wạs̄dī," + name + "!";
+                return "S̄wạs̄dī, " + name + "!";
             }
             case "polish" -> {
-                return  "Witam," + name + "!";
+                return  "Witam, " + name + "!";
             }
             case "spanish" -> {
-                return "Hola," + name + "!";
+                return "Hola, " + name + "!";
             }
             case "french" -> {
-                return "Bonjour," + name + "!";
+                return "Bonjour, " + name + "!";
             }
             default -> {
-                return "Hel6lo," + name + "!";
-                }
+                return "Hel6lo, " + name + "!";
+            }
         }
     }
 }
